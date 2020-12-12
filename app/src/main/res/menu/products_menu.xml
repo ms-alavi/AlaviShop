@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layoutDirection="rtl">
+
+
+
+
+    <item
+        android:id="@+id/digital_menu"
+        android:title="@string/digital"
+
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/health_menu"
+        android:title="@string/health"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/market_menu"
+        android:title="@string/market"
+        app:showAsAction="never" />
+</menu>

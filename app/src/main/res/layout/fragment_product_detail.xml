@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.example.alavishop.model.Product" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            tools:context=".view.fragment.ProductDetailFragment">
+
+            <androidx.viewpager.widget.ViewPager
+
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="360dp" />
+
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_slider"
+                android:layout_marginTop="5dp"
+                android:gravity="right"
+                android:text="@{product.name}"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="test" />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_name"
+                android:layout_marginTop="30dp"
+                android:text="@string/description"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/product_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/description"
+                android:layout_marginTop="5dp"
+                android:gravity="right"
+                android:text="@{product.description}"
+                android:textSize="18sp"
+                tools:text="test" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/product_description"
+                android:layout_marginTop="5dp"
+                android:text="@string/price"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/price"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="right"
+                android:text="@{product.price}"
+                android:textSize="18sp"
+                tools:text="test" />
+            <!--    <Button
+                    android:gravity="center_vertical"
+                    android:text="@string/add_to_cart"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:id="@+id/add_to_cart"
+                    android:drawableLeft="@drawable/ic_baseline_add_shopping_cart_24"
+                    android:layout_alignParentBottom="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"/>-->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:src="@drawable/ic_baseline_add_shopping_cart_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="16dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+</layout>

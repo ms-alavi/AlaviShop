@@ -1,10 +1,11 @@
-package com.example.alavishop.view;
+package com.example.alavishop.view.activity;
 
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
 import com.example.alavishop.R;
+import com.example.alavishop.view.fragment.HomePageFragment;
 
 public class ShopActivity extends SingleFragmentActivity {
 

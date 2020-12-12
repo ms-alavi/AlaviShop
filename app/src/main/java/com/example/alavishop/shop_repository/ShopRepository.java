@@ -1,20 +1,42 @@
 package com.example.alavishop.shop_repository;
+
 import android.util.Log;
+
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.alavishop.model.Product;
-import com.example.alavishop.model.ProductImages;
-import com.example.alavishop.network.ShopGetter;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import java.io.IOException;
-import java.util.ArrayList;
+import com.example.alavishop.network.NetworkParams;
+import com.example.alavishop.network.retrofit.RetrofitInstance;
+import com.example.alavishop.network.retrofit.ShopService;
+
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class ShopRepository {
     public static final String SR = "SR";
-    private ShopGetter mGetter;
+    public static final String REPOSITORY = "REPOSITORY";
 
     private List<Product> mProducts;
+    private ShopService mShopService;
+    private final MutableLiveData<List<Product>> mBestRateProductsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Product>> mNewestProductsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Product>> mPopularProductsLiveData = new MutableLiveData<>();
+
+    public MutableLiveData<List<Product>> getBestRateProductsLiveData() {
+        return mBestRateProductsLiveData;
+    }
+
+    public MutableLiveData<List<Product>> getNewestProductsLiveData() {
+        return mNewestProductsLiveData;
+    }
+
+    public MutableLiveData<List<Product>> getPopularProductsLiveData() {
+        return mPopularProductsLiveData;
+    }
 
     public List<Product> getProducts() {
         return mProducts;
@@ -25,65 +47,72 @@ public class ShopRepository {
     }
 
     public ShopRepository() {
-        mGetter = new ShopGetter();
-    }
+        Retrofit retrofit = RetrofitInstance.getInstance().getRetrofit();
+        mShopService = retrofit.create(ShopService.class);
 
-    //this method must run on background thread.
-    public List<Product> getItems() {
-        String url = mGetter.getRecentUrl();
-        try {
-            String response = mGetter.getUrlString(url);
-            Log.d(SR, "response: " + response);
-            List<Product> items =parseJson(response);
-            return items;
-        } catch (IOException  | JSONException e) {
-            Log.e(SR, e.getMessage(), e);
-            return null;
-        }
     }
 
 
-    private List<Product> parseJson(String response) throws JSONException {
-        List<Product> items = new ArrayList<>();
+    public void fetchBestRateProductsAsync() {
 
-        JSONArray  jsonArray=new JSONArray(response);
-        for (int i = 0; i < jsonArray.length(); i++) {
-            JSONObject productObject = jsonArray.getJSONObject(i);
+        Call<List<Product>> call =
+                mShopService.orderedListItems(NetworkParams.getBestRateProducts());
 
-            if (!productObject.has("url_s"))
-                continue;
+        call.enqueue(new Callback<List<Product>>() {
 
-            int id = productObject.getInt("id");
-            String name = productObject.getString("name");
-            String href= extractHref(productObject);
-            String price = productObject.getString("price");
-            String description = productObject.getString("description");
-            List<ProductImages> images = extractImages(productObject);
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                List<Product> items = response.body();
 
-            Product item = new Product(id,name,images,price,href,description);
-            items.add(item);
-        }
+                mBestRateProductsLiveData.setValue(items);
+            }
 
-        return items;
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.e(REPOSITORY, t.getMessage(), t);
+            }
+        });
     }
 
-    private List<ProductImages> extractImages(JSONObject productObject) throws JSONException {
-        JSONArray ImageArray=productObject.getJSONArray("images");
-        List<ProductImages> images=new ArrayList<>();
-        for (int i = 0; i <ImageArray.length() ; i++) {
-            JSONObject jsonObject=ImageArray.getJSONObject(i);
-            int id=jsonObject.getInt("id");
-            String url=jsonObject.getString("src");
-            ProductImages productImages=new ProductImages(id,url);
-            images.add(productImages);
-        }
-        return images;
+    public void fetchNewestProductsAsync() {
+        Call<List<Product>> call =
+                mShopService.orderedListItems(NetworkParams.getNewestProducts());
+
+        call.enqueue(new Callback<List<Product>>() {
+
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                List<Product> items = response.body();
+
+                mNewestProductsLiveData.setValue(items);
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.e(REPOSITORY, t.getMessage(), t);
+            }
+        });
     }
 
-    private String extractHref(JSONObject productObject) throws JSONException {
-        JSONArray links = productObject.getJSONArray("_links");
-        JSONArray self = links.getJSONArray(0);
-        String href=self.getString(0);
-        return href;
+    public void fetchPopularProductsAsync() {
+        Call<List<Product>> call =
+                mShopService.orderedListItems(NetworkParams.getPopularProducts());
+
+        call.enqueue(new Callback<List<Product>>() {
+
+            @Override
+            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
+                List<Product> items = response.body();
+
+                mPopularProductsLiveData.setValue(items);
+            }
+
+            @Override
+            public void onFailure(Call<List<Product>> call, Throwable t) {
+                Log.e(REPOSITORY, t.getMessage(), t);
+            }
+        });
     }
+
+
 }

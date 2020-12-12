@@ -5,4 +5,11 @@
     <string name="last_products">Latest Products</string>
     <string name="most_visited">The most visited products</string>
     <string name="best_products">The best products</string>
+    <string name="description">توضیحات</string>
+    <string name="price">قیمت</string>
+    <string name="add_to_cart">افزودن به سبد خرید</string>
+    <string name="digital">دیجیتال</string>
+    <string name="bedasht">بهداشت</string>
+    <string name="health">بهداشت</string>
+    <string name="market">سوپر مارکت</string>
 </resources>

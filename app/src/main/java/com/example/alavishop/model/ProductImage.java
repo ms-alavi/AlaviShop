@@ -1,10 +1,12 @@
 package com.example.alavishop.model;
 
-public class ProductImages {
+import java.io.Serializable;
+
+public class ProductImage implements Serializable {
     private int mId;
     private String mUrl;
 
-    public ProductImages(int id, String url) {
+    public ProductImage(int id, String url) {
         mId = id;
         mUrl = url;
     }

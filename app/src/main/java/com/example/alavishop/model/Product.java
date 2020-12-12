@@ -1,19 +1,18 @@
 package com.example.alavishop.model;
 
-import android.media.Image;
-
+import java.io.Serializable;
 import java.util.List;
 
-public class Product {
+public class Product implements Serializable {
     private int mId;
     private String mName;
     private String mPrice;
     private String mUrl;
     private String mDescription;
-    private List<ProductImages> mImages;
+    private List<ProductImage> mImages;
 
 
-    public Product(int id ,String name, List<ProductImages> images, String price, String url,String description) {
+    public Product(int id , String name, List<ProductImage> images, String price, String url, String description) {
         mUrl=url;
         mId=id;
         mName = name;
@@ -25,11 +24,11 @@ public class Product {
     public Product() {
     }
 
-    public List<ProductImages> getImages() {
+    public List<ProductImage> getImages() {
         return mImages;
     }
 
-    public void setImages(List<ProductImages> images) {
+    public void setImages(List<ProductImage> images) {
         mImages = images;
     }
     public int getId() {

@@ -1,4 +1,4 @@
-package com.example.alavishop.view;
+package com.example.alavishop.view.activity;
 
 import android.os.Bundle;
 
