@@ -33,6 +33,7 @@ public class ProductViewModel {
 
         return str+" تومان ";
     }
+
     //TODO : changing to mipmap
     public ProductImage getImage(){
         return mProduct.getImages().get(0);

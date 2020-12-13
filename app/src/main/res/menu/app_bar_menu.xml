@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        
+
         android:id="@+id/hamber_menu"
         android:icon="@drawable/ic_white_menu_24"
         android:title="hamberMenu"

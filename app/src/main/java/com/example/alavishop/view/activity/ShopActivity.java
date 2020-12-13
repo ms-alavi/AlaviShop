@@ -20,4 +20,20 @@ public class ShopActivity extends SingleFragmentActivity {
         setContentView(R.layout.activity_fragment);
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+
+
+    }
+
 }

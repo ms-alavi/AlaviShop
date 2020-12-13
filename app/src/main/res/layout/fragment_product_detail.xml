@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/description"
                 android:layout_marginTop="5dp"
+                android:textColor="@color/black"
                 android:gravity="right"
                 android:text="@{product.description}"
                 android:textSize="18sp"

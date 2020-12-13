@@ -2,9 +2,9 @@
     <string name="app_name">AlaviShop</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="last_products">Latest Products</string>
-    <string name="most_visited">The most visited products</string>
-    <string name="best_products">The best products</string>
+    <string name="last_products">جدیدترین محصولات</string>
+    <string name="most_visited">پربازدید ترین محصولات</string>
+    <string name="best_products">بهترین محصولات</string>
     <string name="description">توضیحات</string>
     <string name="price">قیمت</string>
     <string name="add_to_cart">افزودن به سبد خرید</string>
