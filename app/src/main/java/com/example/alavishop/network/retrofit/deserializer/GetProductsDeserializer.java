@@ -1,4 +1,4 @@
-package com.example.alavishop.network.retrofit;
+package com.example.alavishop.network.retrofit.deserializer;
 
 import com.example.alavishop.model.Category.Category;
 import com.example.alavishop.model.product.Product;
@@ -32,7 +32,6 @@ public class GetProductsDeserializer implements JsonDeserializer<List<Product>> 
             String price = productObject.get("price").getAsString();
             String description = productObject.get("description").getAsString();
             List<ProductImage> images = extractImages(productObject);
-            String slug=productObject.get("slug").getAsString();
             List<Category> categories=extractCategories(productObject);
 
             Product item = new Product(id,name,images,price,href,description,categories);

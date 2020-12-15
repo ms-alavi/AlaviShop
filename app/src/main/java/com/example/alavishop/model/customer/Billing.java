@@ -63,8 +63,7 @@ public class Billing {
             this.postCode = postCode;
         }
 
-        public Billing() {
-        }
+  
 
         public void setName(String name) {
             this.name = name;

@@ -4,7 +4,9 @@ import android.media.Image;
 
 import com.example.alavishop.model.product.ProductImage;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable {
     private long id;
 
     private String name;

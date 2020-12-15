@@ -1,68 +1,67 @@
 package com.example.alavishop.model.customer;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Customer {
 
-    private long id;
+    private long mId;
 
-    private String name;
+    private String mName;
 
-    private String lastName;
+    private String mLastName;
 
-    private String email;
+    private String mEmail;
 
-    private Billing billing;
+    private String mUserName;
 
-    public Customer(long id, String name, String lastName, String email, Billing billing) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.billing = billing;
+    private Billing mBilling;
+
+    public Customer(long id, String name, String lastName, String email, Billing billing, String userName) {
+        mId = id;
+        mName = name;
+        mLastName = lastName;
+        mEmail = email;
+        mBilling = billing;
+        mUserName=userName;
     }
 
-    public Customer() {
-    }
 
     public long getId() {
-        return id;
+        return mId;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
     public String getLastName() {
-        return lastName;
+        return mLastName;
     }
 
     public String getEmail() {
-        return email;
+        return mEmail;
     }
 
     public Billing getBilling() {
-        return billing;
+        return mBilling;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.mId = id;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.mName = name;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.mLastName = lastName;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.mEmail = email;
     }
 
     public void setBilling(Billing billing) {
-        this.billing = billing;
+        this.mBilling = billing;
     }
 }
 
