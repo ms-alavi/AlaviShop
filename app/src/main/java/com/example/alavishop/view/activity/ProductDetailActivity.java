@@ -7,10 +7,9 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.example.alavishop.R;
-import com.example.alavishop.model.Product;
+import com.example.alavishop.model.product.Product;
 import com.example.alavishop.view.fragment.ProductDetailFragment;
 
 public class ProductDetailActivity extends AppCompatActivity {

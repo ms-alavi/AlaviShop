@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.alavishop.R;
 import com.example.alavishop.databinding.ImagePagerBinding;
-import com.example.alavishop.model.ProductImage;
+import com.example.alavishop.model.product.ProductImage;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

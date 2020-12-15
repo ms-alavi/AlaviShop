@@ -4,7 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.alavishop.model.Product;
+import com.example.alavishop.model.product.Product;
 import com.example.alavishop.network.NetworkParams;
 import com.example.alavishop.network.retrofit.RetrofitInstance;
 import com.example.alavishop.network.retrofit.ShopService;

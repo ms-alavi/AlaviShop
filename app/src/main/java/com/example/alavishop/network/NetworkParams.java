@@ -33,7 +33,6 @@ public class NetworkParams {
         newestProducts.putAll(BASE_OPTIONS);
         newestProducts.put("orderby", ORDER_BY_DATE);
         newestProducts.put("order", ORDER_ASC);
-
         return newestProducts;
     }
 
@@ -44,5 +43,6 @@ public class NetworkParams {
         bestRatingProducts.put("order", ORDER_ASC);
         return bestRatingProducts;
     }
+
 
 }

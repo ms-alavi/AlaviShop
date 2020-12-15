@@ -5,11 +5,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.alavishop.model.Product;
+import com.example.alavishop.model.product.Product;
 import com.example.alavishop.shop_repository.ShopRepository;
 import com.example.alavishop.utilities.QueryPreferences;
 

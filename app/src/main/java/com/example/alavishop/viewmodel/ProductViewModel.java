@@ -1,12 +1,7 @@
 package com.example.alavishop.viewmodel;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
-
-import com.example.alavishop.model.Product;
-import com.example.alavishop.model.ProductImage;
+import com.example.alavishop.model.product.Product;
+import com.example.alavishop.model.product.ProductImage;
 
 public class ProductViewModel {
     private Product mProduct;

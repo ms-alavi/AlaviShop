@@ -4,20 +4,16 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alavishop.R;
 import com.example.alavishop.databinding.RawOfListBinding;
-import com.example.alavishop.model.Product;
+import com.example.alavishop.model.product.Product;
 import com.example.alavishop.view.activity.ProductDetailActivity;
 import com.example.alavishop.viewmodel.ProductViewModel;
-import com.example.alavishop.viewmodel.ShopViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

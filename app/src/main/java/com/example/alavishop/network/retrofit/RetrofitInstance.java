@@ -1,6 +1,6 @@
 package com.example.alavishop.network.retrofit;
 
-import com.example.alavishop.model.Product;
+import com.example.alavishop.model.product.Product;
 import com.example.alavishop.network.NetworkParams;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

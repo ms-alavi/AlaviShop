@@ -5,16 +5,14 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.alavishop.R;
 import com.example.alavishop.adapter.ImagePagerAdapter;
 import com.example.alavishop.databinding.FragmentProductDetailBinding;
-import com.example.alavishop.model.Product;
+import com.example.alavishop.model.product.Product;
 
 public class ProductDetailFragment extends Fragment {
     public static final String PDF = "PDF";

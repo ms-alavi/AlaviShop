@@ -1,17 +1,14 @@
 package com.example.alavishop.network.retrofit;
 
-import com.example.alavishop.model.Product;
-import com.example.alavishop.model.ProductImage;
+import com.example.alavishop.model.Category.Category;
+import com.example.alavishop.model.product.Product;
+import com.example.alavishop.model.product.ProductImage;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -36,8 +33,9 @@ public class GetProductsDeserializer implements JsonDeserializer<List<Product>> 
             String description = productObject.get("description").getAsString();
             List<ProductImage> images = extractImages(productObject);
             String slug=productObject.get("slug").getAsString();
+            List<Category> categories=extractCategories(productObject);
 
-            Product item = new Product(id,name,images,price,href,description);
+            Product item = new Product(id,name,images,price,href,description,categories);
             items.add(item);
         }
 
@@ -56,6 +54,20 @@ public class GetProductsDeserializer implements JsonDeserializer<List<Product>> 
             images.add(productImages);
         }
         return images;
+    }
+
+    private List<Category> extractCategories(JsonObject productObject) throws JsonParseException {
+        JsonArray categoryArray = productObject.getAsJsonArray("categories");
+        List<Category> categories = new ArrayList<>();
+        for (int i = 0; i < categoryArray.size(); i++) {
+            JsonObject jsonObject = categoryArray.get(i).getAsJsonObject();
+            int id = jsonObject.get("id").getAsInt();
+            String name = jsonObject.get("name").getAsString();
+            String slug = jsonObject.get("slug").getAsString();
+            Category category = new Category(id, name,slug);
+            categories.add(category);
+        }
+        return categories;
     }
 
     private String extractHref(JsonObject  productObject) throws JsonParseException {

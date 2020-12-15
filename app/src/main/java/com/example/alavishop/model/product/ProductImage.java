@@ -1,4 +1,4 @@
-package com.example.alavishop.model;
+package com.example.alavishop.model.product;
 
 import java.io.Serializable;
 
