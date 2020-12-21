@@ -68,7 +68,7 @@
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigation_view"
             android:layout_gravity="right"
-            android:background="@color/white"
+            app:backgroundTint = "@color/white"
             app:headerLayout="@layout/header"
             android:layoutDirection="rtl"
             app:menu="@menu/products_menu"

@@ -5,11 +5,10 @@
     android:layoutDirection="rtl">
 
 
-
-
     <item
         android:id="@+id/digital_menu"
         android:title="@string/digital"
+        android:onClick=""
 
         app:showAsAction="never" />
     <item
@@ -19,5 +18,13 @@
     <item
         android:id="@+id/market_menu"
         android:title="@string/market"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/clothes_menu"
+        android:title="@string/clothes"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/creativity_menu"
+        android:title="@string/creativity"
         app:showAsAction="never" />
 </menu>

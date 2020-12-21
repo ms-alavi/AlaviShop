@@ -59,22 +59,11 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
             mRawOfListBinding = binding;
             mRawOfListBinding.setProductViewModel(new ProductViewModel(mProduct));
             mRawOfListBinding.getRoot()
-                    .setOnClickListener(new View.OnClickListener()
-                    {
-                        public void onClick(View v) {
-
-                            mContext.startActivity(ProductDetailActivity
-                                    .newIntent(mContext,mProduct));
-
-                        }
-                    }
-
-            );
+                    .setOnClickListener(v -> mContext.startActivity(ProductDetailActivity
+                            .newIntent(mContext,mProduct)));
         }
 
-        /*  v -> mContext.startActivity(
-    ProductDetailActivity.newIntent(mContext
-            ,mRawOfListBinding.getProductViewModel().getProduct()))*/
+
         public void bindProductItem(Product product, int position) {
             mProduct = product;
 

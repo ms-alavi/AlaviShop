@@ -87,6 +87,7 @@ public class HomePageFragment extends Fragment {
                 R.layout.fragment_home_page,
                 container,
                 false);
+
         initViews();
 
         setListeners();
@@ -109,6 +110,12 @@ public class HomePageFragment extends Fragment {
                         break;
                     case R.id.market_menu:
                         Toast.makeText(getContext(), "market", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.clothes_menu:
+                        //TODO
+                        break;
+                    case R.id.creativity_menu:
+                        //TODO
                         break;
 
 
