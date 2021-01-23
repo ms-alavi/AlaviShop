@@ -1,54 +1,49 @@
 package com.example.alavishop.model.Category;
 
-import android.media.Image;
-
 import com.example.alavishop.model.product.ProductImage;
 
-import java.io.Serializable;
+public class Category {
+    private int mId;
+    private String mName;
+    private int mParent;
+    private ProductImage mImage;
 
-public class Category implements Serializable {
-    private long id;
-
-    private String name;
-
-   /* private long parent;
-
-    private long count;*/
-
-    private String slug;
-
-  //  private ProductImage image;
-
-    public Category(long id, String name, String slug) {
-        this.id = id;
-        this.name = name;
-//        this.parent = parent;
-//        this.count = count;
-        this.slug = slug;
-    //    this.image = image;
+    public Category(int id, String name, int parent, ProductImage image) {
+        mId = id;
+        mName = name;
+        mParent = parent;
+        mImage = image;
     }
 
-    public long getId() {
-        return id;
+    public int getId() {
+        return mId;
+    }
+
+    public void setId(int id) {
+        mId = id;
     }
 
     public String getName() {
-        return name;
+        return mName;
     }
 
-/*    public long getParent() {
-        return parent;
+    public void setName(String name) {
+        mName = name;
     }
 
-    public long getCount() {
-        return count;
-    }*/
-
-    public String getSlug() {
-        return slug;
+    public int getParent() {
+        return mParent;
     }
 
-    /*public ProductImage getImage() {
-        return image;
-    }*/
+    public void setParent(int parent) {
+        mParent = parent;
+    }
+
+    public ProductImage getImage() {
+        return mImage;
+    }
+
+    public void setImage(ProductImage image) {
+        mImage = image;
+    }
 }

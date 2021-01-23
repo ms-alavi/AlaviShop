@@ -1,21 +1,21 @@
 package com.example.alavishop.viewmodel;
 
-import com.example.alavishop.model.product.Product;
-import com.example.alavishop.model.product.ProductImage;
+import com.example.alavishop.networkmodel.product.Image;
+import com.example.alavishop.networkmodel.product.WebserviceProductModel;
 
 public class ProductViewModel {
-    private Product mProduct;
+    private WebserviceProductModel mProduct;
 
 
-    public Product getProduct() {
+    public WebserviceProductModel getProduct() {
         return mProduct;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(WebserviceProductModel product) {
         mProduct = product;
     }
 
-    public ProductViewModel( Product product) {
+    public ProductViewModel(WebserviceProductModel product) {
 
         mProduct = product;
     }
@@ -30,7 +30,7 @@ public class ProductViewModel {
     }
 
     //TODO : changing to mipmap
-    public ProductImage getImage(){
+    public Image getImage(){
         return mProduct.getImages().get(0);
     }
 }

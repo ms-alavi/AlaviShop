@@ -14,4 +14,7 @@
     <string name="market">سوپر مارکت</string>
     <string name="clothes">پوشاک</string>
     <string name="creativity">سرگرمی</string>
+    <string name="category">دسته بندی ها</string>
+    <string name="card">سبد خرید</string>
+    <string name="profile">پروفایل</string>
 </resources>

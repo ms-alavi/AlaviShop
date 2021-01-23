@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +24,8 @@ import com.example.alavishop.R;
 import com.example.alavishop.adapter.ShopAdapter;
 import com.example.alavishop.databinding.FragmentHomePageBinding;
 import com.example.alavishop.model.product.Product;
+import com.example.alavishop.networkmodel.product.WebserviceProductModel;
+import com.example.alavishop.view.activity.CategoryActivity;
 import com.example.alavishop.viewmodel.ShopViewModel;
 import com.google.android.material.navigation.NavigationView;
 
@@ -66,7 +69,8 @@ public class HomePageFragment extends Fragment {
 
 
     private void onBackPressedInFragment() {
-        getActivity() .getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+        getActivity() .getOnBackPressedDispatcher().addCallback(this,
+                new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 if (mBinding.homePageDrawableLayout.isDrawerOpen(Gravity.RIGHT)) {
@@ -96,33 +100,22 @@ public class HomePageFragment extends Fragment {
     }
 
     private void setListeners() {
-        mBinding.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mBinding.navigationView.setNavigationItemSelectedListener(item -> {
 
-                int id=item.getItemId();
-                switch (id){
-                    case R.id.health_menu:
-                        Toast.makeText(getActivity(), "health", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.digital_menu:
-                        Toast.makeText(getContext(), "digital", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.market_menu:
-                        Toast.makeText(getContext(), "market", Toast.LENGTH_SHORT).show();
-                        break;
-                    case R.id.clothes_menu:
-                        //TODO
-                        break;
-                    case R.id.creativity_menu:
-                        //TODO
-                        break;
-
-
-                }
-                mBinding.homePageDrawableLayout.closeDrawer(Gravity.RIGHT);
-                return true;
+            int id=item.getItemId();
+            switch (id){
+                case R.id.card_menu:
+                    Toast.makeText(getActivity(), "health", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.category_menu:
+                    getActivity().startActivity(CategoryActivity.newIntent(getActivity()));
+                    break;
+                case R.id.profile_menu:
+                    //TODO
+                    break;
             }
+            mBinding.homePageDrawableLayout.closeDrawer(Gravity.RIGHT);
+            return true;
         });
     }
 
@@ -130,8 +123,6 @@ public class HomePageFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.app_bar_menu,menu);
-        MenuItem item=menu.findItem(R.id.hamber_menu);
-
     }
 
     @Override
@@ -146,8 +137,8 @@ public class HomePageFragment extends Fragment {
         }
     }
 
-    private void setUpAdapter(List<Product> items, int list) {
-        ShopAdapter adapter = new ShopAdapter( items,getContext());
+    private void setUpAdapter(List<WebserviceProductModel> items, int list) {
+        ShopAdapter adapter = new ShopAdapter( items,getActivity());
         switch (list){
             case 0:
                 mBinding.recycleViewBest.setAdapter(adapter);
@@ -180,24 +171,14 @@ public class HomePageFragment extends Fragment {
     }
 
     private void setLiveDataObservers() {
-        mShopViewModel.getBestRateProductsLiveData().observe(this, new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> items) {
-                setUpAdapter(items,0);
-            }
+        mShopViewModel.getBestRateProductsLiveData().observe(this, items -> {
+            Log.d(HomePageFragment,"items : "+items.toString());
+            setUpAdapter(items,0);
         });
-        mShopViewModel.getNewestProductsLiveData().observe(this, new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> items) {
-                setUpAdapter(items,1);
-            }
-        });
-        mShopViewModel.getPopularProductsLiveData().observe(this, new Observer<List<Product>>() {
-            @Override
-            public void onChanged(List<Product> items) {
-                setUpAdapter(items,2);
-            }
-        });
+        mShopViewModel.getNewestProductsLiveData()
+                .observe(this, items -> setUpAdapter(items,1));
+        mShopViewModel.getPopularProductsLiveData()
+                .observe(this, items -> setUpAdapter(items,2));
      //ToDo: add search
     }
 }

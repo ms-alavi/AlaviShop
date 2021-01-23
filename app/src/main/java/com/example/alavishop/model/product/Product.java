@@ -1,6 +1,6 @@
 package com.example.alavishop.model.product;
 
-import com.example.alavishop.model.Category.Category;
+import com.example.alavishop.model.Category.CategoryProduct;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,11 +12,11 @@ public class Product implements Serializable {
     private String mUrl;
     private String mDescription;
     private List<ProductImage> mImages;
-    private List<Category> mCategories;
+    private List<CategoryProduct> mCategories;
 
 
     public Product(int id , String name, List<ProductImage> images, String price,
-                   String url, String description,List<Category> categories) {
+                   String url, String description,List<CategoryProduct> categories) {
         mUrl=url;
         mId=id;
         mName = name;
@@ -28,11 +28,11 @@ public class Product implements Serializable {
 
     public Product() {
     }
-    public List<Category> getCategories() {
+    public List<CategoryProduct> getCategories() {
         return mCategories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(List<CategoryProduct> categories) {
         mCategories = categories;
     }
     public List<ProductImage> getImages() {

@@ -7,9 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 
 import com.example.alavishop.R;
 import com.example.alavishop.model.product.Product;
+import com.example.alavishop.networkmodel.product.WebserviceProductModel;
 import com.example.alavishop.view.fragment.ProductDetailFragment;
 
 public class ProductDetailActivity extends AppCompatActivity {
@@ -19,9 +21,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
 
 
-    public static Intent newIntent(Context context, Product product) {
+    public static Intent newIntent(Context context, WebserviceProductModel product) {
         Intent intent = new Intent(context, ProductDetailActivity.class);
-        intent.putExtra(EXTRA_PRODUCT, product);
+        intent.putExtra(EXTRA_PRODUCT, (Parcelable) product);
         return intent;
     }
 

@@ -2,7 +2,6 @@ package com.example.alavishop.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,8 +9,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alavishop.R;
-import com.example.alavishop.databinding.RawOfListBinding;
+import com.example.alavishop.databinding.RawOfListShopAdapterBinding;
 import com.example.alavishop.model.product.Product;
+import com.example.alavishop.networkmodel.product.WebserviceProductModel;
 import com.example.alavishop.view.activity.ProductDetailActivity;
 import com.example.alavishop.viewmodel.ProductViewModel;
 import com.squareup.picasso.Picasso;
@@ -19,10 +19,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
-    private List<Product> mProducts;
+    private List<WebserviceProductModel> mProducts;
     private final Context mContext;
 
-    public ShopAdapter(List<Product> products, Context context) {
+    public ShopAdapter(List<WebserviceProductModel> products, Context context) {
         mProducts = products;
         mContext = context;
     }
@@ -30,8 +30,8 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
     @NonNull
     @Override
     public ShopHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RawOfListBinding rawOfListBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext)
-                , R.layout.raw_of_list,
+        RawOfListShopAdapterBinding rawOfListBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext)
+                , R.layout.raw_of_list_shop_adapter,
                 parent,
                 false);
 
@@ -40,7 +40,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ShopHolder holder, int position) {
-        Product product = mProducts.get(position);
+        WebserviceProductModel product = mProducts.get(position);
         holder.bindProductItem(product, position);
 
     }
@@ -51,10 +51,10 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
     }
 
     public class ShopHolder extends RecyclerView.ViewHolder {
-        private RawOfListBinding mRawOfListBinding;
-        private Product mProduct;
+        private RawOfListShopAdapterBinding mRawOfListBinding;
+        private WebserviceProductModel mProduct;
 
-        public ShopHolder(@NonNull RawOfListBinding binding, List<Product> products) {
+        public ShopHolder(@NonNull RawOfListShopAdapterBinding binding, List<WebserviceProductModel> products) {
             super(binding.getRoot());
             mRawOfListBinding = binding;
             mRawOfListBinding.setProductViewModel(new ProductViewModel(mProduct));
@@ -64,12 +64,12 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
         }
 
 
-        public void bindProductItem(Product product, int position) {
+        public void bindProductItem(WebserviceProductModel product, int position) {
             mProduct = product;
 
             mRawOfListBinding.getProductViewModel().setProduct(mProduct);
             Picasso.get()
-                    .load(product.getImages().get(0).getUrl())
+                    .load(product.getImages().get(0).getSrc())
                     .placeholder(R.drawable.ic_shopping_cart)
                     .into(mRawOfListBinding.imgProduct);
 

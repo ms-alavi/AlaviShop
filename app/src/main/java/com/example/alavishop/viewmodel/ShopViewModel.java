@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.alavishop.model.product.Product;
+import com.example.alavishop.networkmodel.product.WebserviceProductModel;
 import com.example.alavishop.shop_repository.ShopRepository;
 import com.example.alavishop.utilities.QueryPreferences;
 
@@ -19,19 +20,19 @@ public class ShopViewModel extends AndroidViewModel {
     public static final String POPULAR_PRODUCT = "popularProduct";
     private ShopRepository mShopRepository;
 
-    private final MutableLiveData<List<Product>> mBestRateProductsLiveData;
-    private final MutableLiveData<List<Product>> mNewestProductsLiveData;
-    private final MutableLiveData<List<Product>> mPopularProductsLiveData;
+    private final MutableLiveData<List<WebserviceProductModel>> mBestRateProductsLiveData;
+    private final MutableLiveData<List<WebserviceProductModel>> mNewestProductsLiveData;
+    private final MutableLiveData<List<WebserviceProductModel>> mPopularProductsLiveData;
 
-    public MutableLiveData<List<Product>> getBestRateProductsLiveData() {
+    public MutableLiveData<List<WebserviceProductModel>> getBestRateProductsLiveData() {
         return mBestRateProductsLiveData;
     }
 
-    public MutableLiveData<List<Product>> getNewestProductsLiveData() {
+    public MutableLiveData<List<WebserviceProductModel>> getNewestProductsLiveData() {
         return mNewestProductsLiveData;
     }
 
-    public MutableLiveData<List<Product>> getPopularProductsLiveData() {
+    public MutableLiveData<List<WebserviceProductModel>> getPopularProductsLiveData() {
         return mPopularProductsLiveData;
     }
 

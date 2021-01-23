@@ -6,25 +6,17 @@
 
 
     <item
-        android:id="@+id/digital_menu"
-        android:title="@string/digital"
-        android:onClick=""
+        android:id="@+id/category_menu"
+        android:title="@string/category"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/card_menu"
+        android:title="@string/card"
+        app:showAsAction="never" />
 
-        app:showAsAction="never" />
     <item
-        android:id="@+id/health_menu"
-        android:title="@string/health"
+        android:id="@+id/profile_menu"
+        android:title="@string/profile"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/market_menu"
-        android:title="@string/market"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/clothes_menu"
-        android:title="@string/clothes"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/creativity_menu"
-        android:title="@string/creativity"
-        app:showAsAction="never" />
+
 </menu>
