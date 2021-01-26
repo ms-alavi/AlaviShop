@@ -6,7 +6,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -21,13 +20,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.alavishop.R;
-import com.example.alavishop.adapter.ShopAdapter;
+import com.example.alavishop.adapter.ImagePagerAdapter;
+import com.example.alavishop.adapter.VerticalProductAdapter;
 import com.example.alavishop.databinding.FragmentHomePageBinding;
-import com.example.alavishop.model.product.Product;
-import com.example.alavishop.networkmodel.product.WebserviceProductModel;
+import com.example.alavishop.networkmodel.product.ProductResponse;
 import com.example.alavishop.view.activity.CategoryActivity;
 import com.example.alavishop.viewmodel.ShopViewModel;
-import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
@@ -137,8 +135,8 @@ public class HomePageFragment extends Fragment {
         }
     }
 
-    private void setUpAdapter(List<WebserviceProductModel> items, int list) {
-        ShopAdapter adapter = new ShopAdapter( items,getActivity());
+    private void setUpAdapter(List<ProductResponse> items, int list) {
+        VerticalProductAdapter adapter = new VerticalProductAdapter( items,getActivity());
         switch (list){
             case 0:
                 mBinding.recycleViewBest.setAdapter(adapter);
@@ -168,6 +166,8 @@ public class HomePageFragment extends Fragment {
                 (new LinearLayoutManager(getActivity(),
                         LinearLayoutManager.HORIZONTAL,
                         false));
+
+
     }
 
     private void setLiveDataObservers() {
@@ -179,6 +179,9 @@ public class HomePageFragment extends Fragment {
                 .observe(this, items -> setUpAdapter(items,1));
         mShopViewModel.getPopularProductsLiveData()
                 .observe(this, items -> setUpAdapter(items,2));
+        mShopViewModel.getSingleProduct(608).observe(this,
+                productResponse -> mBinding.homePageImageSlider.setAdapter(new ImagePagerAdapter(getActivity()
+                ,productResponse.getImages())));
      //ToDo: add search
     }
 }

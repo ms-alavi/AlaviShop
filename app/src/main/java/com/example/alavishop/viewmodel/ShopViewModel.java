@@ -7,8 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.alavishop.model.product.Product;
-import com.example.alavishop.networkmodel.product.WebserviceProductModel;
+import com.example.alavishop.networkmodel.product.ProductResponse;
 import com.example.alavishop.shop_repository.ShopRepository;
 import com.example.alavishop.utilities.QueryPreferences;
 
@@ -20,19 +19,19 @@ public class ShopViewModel extends AndroidViewModel {
     public static final String POPULAR_PRODUCT = "popularProduct";
     private ShopRepository mShopRepository;
 
-    private final MutableLiveData<List<WebserviceProductModel>> mBestRateProductsLiveData;
-    private final MutableLiveData<List<WebserviceProductModel>> mNewestProductsLiveData;
-    private final MutableLiveData<List<WebserviceProductModel>> mPopularProductsLiveData;
+    private final MutableLiveData<List<ProductResponse>> mBestRateProductsLiveData;
+    private final MutableLiveData<List<ProductResponse>> mNewestProductsLiveData;
+    private final MutableLiveData<List<ProductResponse>> mPopularProductsLiveData;
 
-    public MutableLiveData<List<WebserviceProductModel>> getBestRateProductsLiveData() {
+    public MutableLiveData<List<ProductResponse>> getBestRateProductsLiveData() {
         return mBestRateProductsLiveData;
     }
 
-    public MutableLiveData<List<WebserviceProductModel>> getNewestProductsLiveData() {
+    public MutableLiveData<List<ProductResponse>> getNewestProductsLiveData() {
         return mNewestProductsLiveData;
     }
 
-    public MutableLiveData<List<WebserviceProductModel>> getPopularProductsLiveData() {
+    public MutableLiveData<List<ProductResponse>> getPopularProductsLiveData() {
         return mPopularProductsLiveData;
     }
 
@@ -70,6 +69,9 @@ public class ShopViewModel extends AndroidViewModel {
             fetchPopularProductsAsync();
         }
     }
+     public MutableLiveData<ProductResponse> getSingleProduct(int productId){
+        return mShopRepository.getSingleProduct(productId);
+     }
 
 
 

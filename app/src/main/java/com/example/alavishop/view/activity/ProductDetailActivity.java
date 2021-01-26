@@ -11,19 +11,19 @@ import android.os.Parcelable;
 
 import com.example.alavishop.R;
 import com.example.alavishop.model.product.Product;
-import com.example.alavishop.networkmodel.product.WebserviceProductModel;
+import com.example.alavishop.networkmodel.product.ProductResponse;
 import com.example.alavishop.view.fragment.ProductDetailFragment;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
-    private Product mProduct;
+    private ProductResponse mProduct;
     public static final String EXTRA_PRODUCT = " com.example.alavishop.extraProduct";
 
 
 
-    public static Intent newIntent(Context context, WebserviceProductModel product) {
+    public static Intent newIntent(Context context, ProductResponse product) {
         Intent intent = new Intent(context, ProductDetailActivity.class);
-        intent.putExtra(EXTRA_PRODUCT, (Parcelable) product);
+        intent.putExtra(EXTRA_PRODUCT,  product);
         return intent;
     }
 
@@ -33,7 +33,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fragment);
         Intent intent=getIntent();
         if (intent!=null){
-            mProduct= (Product) getIntent().getSerializableExtra(EXTRA_PRODUCT);
+            mProduct= (ProductResponse) getIntent().getSerializableExtra(EXTRA_PRODUCT);
         }
         FragmentManager fragmentManager=getSupportFragmentManager();
         ProductDetailFragment playerFragment =ProductDetailFragment.newInstance(mProduct);

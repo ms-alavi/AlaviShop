@@ -10,19 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alavishop.R;
 import com.example.alavishop.databinding.RawOfListShopAdapterBinding;
-import com.example.alavishop.model.product.Product;
-import com.example.alavishop.networkmodel.product.WebserviceProductModel;
+import com.example.alavishop.networkmodel.product.ProductResponse;
 import com.example.alavishop.view.activity.ProductDetailActivity;
 import com.example.alavishop.viewmodel.ProductViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
-    private List<WebserviceProductModel> mProducts;
+public class VerticalProductAdapter extends RecyclerView.Adapter<VerticalProductAdapter.ShopHolder> {
+    private List<ProductResponse> mProducts;
     private final Context mContext;
 
-    public ShopAdapter(List<WebserviceProductModel> products, Context context) {
+    public VerticalProductAdapter(List<ProductResponse> products, Context context) {
         mProducts = products;
         mContext = context;
     }
@@ -40,7 +39,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ShopHolder holder, int position) {
-        WebserviceProductModel product = mProducts.get(position);
+        ProductResponse product = mProducts.get(position);
         holder.bindProductItem(product, position);
 
     }
@@ -52,9 +51,9 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
 
     public class ShopHolder extends RecyclerView.ViewHolder {
         private RawOfListShopAdapterBinding mRawOfListBinding;
-        private WebserviceProductModel mProduct;
+        private ProductResponse mProduct;
 
-        public ShopHolder(@NonNull RawOfListShopAdapterBinding binding, List<WebserviceProductModel> products) {
+        public ShopHolder(@NonNull RawOfListShopAdapterBinding binding, List<ProductResponse> products) {
             super(binding.getRoot());
             mRawOfListBinding = binding;
             mRawOfListBinding.setProductViewModel(new ProductViewModel(mProduct));
@@ -64,10 +63,12 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopHolder> {
         }
 
 
-        public void bindProductItem(WebserviceProductModel product, int position) {
+        public void bindProductItem(ProductResponse product, int position) {
             mProduct = product;
 
             mRawOfListBinding.getProductViewModel().setProduct(mProduct);
+            mRawOfListBinding.txtName.setText(mProduct.getName());
+            mRawOfListBinding.txtPrice.setText(mProduct.getPrice());
             Picasso.get()
                     .load(product.getImages().get(0).getSrc())
                     .placeholder(R.drawable.ic_shopping_cart)

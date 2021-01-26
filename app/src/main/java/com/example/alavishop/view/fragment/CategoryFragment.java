@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.util.Log;
@@ -17,7 +18,9 @@ import com.example.alavishop.adapter.CategoryAdapter;
 import com.example.alavishop.databinding.FragmentCategoryBinding;
 import com.example.alavishop.model.Category.Category;
 import com.example.alavishop.model.Category.CategoryProduct;
+import com.example.alavishop.networkmodel.category.CategoryResponse;
 import com.example.alavishop.viewmodel.CategoryViewModel;
+import com.example.alavishop.viewmodel.ShopViewModel;
 
 import java.util.List;
 
@@ -43,7 +46,7 @@ public class CategoryFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel=new CategoryViewModel();
+        mViewModel = new ViewModelProvider(this).get(CategoryViewModel.class);
         mViewModel.fetchAllCategoriesAsync();
         mViewModel.fetchMainCategoriesAsync();
         setLiveDataObserver();
@@ -64,18 +67,17 @@ public class CategoryFragment extends Fragment {
     }
 
     private void initMethod() {
-        mBinding.categoryRecycleView.setLayoutManager(new GridLayoutManager(getActivity(),4));
+        mBinding.categoryRecycleView.setLayoutManager(new GridLayoutManager(getActivity(),3));
     }
 
-    private void setAdapter(List<Category> categories){
+    private void setAdapter(List<CategoryResponse> categories){
         CategoryAdapter adapter=new CategoryAdapter(categories,getActivity());
         mBinding.categoryRecycleView.setAdapter(adapter);
     }
     private void setLiveDataObserver() {
-        mViewModel.getAllCategories().observe(this, new Observer<List<Category>>() {
+        mViewModel.getAllCategories().observe(this, new Observer<List<CategoryResponse>>() {
             @Override
-            public void onChanged(List<Category> categories) {
-                Log.d(CF,"Category : "+categories.toString());
+            public void onChanged(List<CategoryResponse> categories) {
                 setAdapter(categories);
             }
         });

@@ -13,10 +13,11 @@ import com.example.alavishop.R;
 import com.example.alavishop.adapter.ImagePagerAdapter;
 import com.example.alavishop.databinding.FragmentProductDetailBinding;
 import com.example.alavishop.model.product.Product;
+import com.example.alavishop.networkmodel.product.ProductResponse;
 
 public class ProductDetailFragment extends Fragment {
     public static final String PDF = "PDF";
-    private Product mProduct;
+    private ProductResponse mProduct;
     private FragmentProductDetailBinding mBinding;
 
     public static final String ARGS_PRODUCT = " com.example.alavishop.argsProduct";
@@ -25,7 +26,7 @@ public class ProductDetailFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static ProductDetailFragment newInstance(Product product) {
+    public static ProductDetailFragment newInstance(ProductResponse product) {
         ProductDetailFragment fragment = new ProductDetailFragment();
         Bundle args = new Bundle();
         args.putSerializable(ARGS_PRODUCT, product);
@@ -38,7 +39,7 @@ public class ProductDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mProduct = (Product) getArguments().getSerializable(ARGS_PRODUCT);
+            mProduct = (ProductResponse) getArguments().getSerializable(ARGS_PRODUCT);
         }
     }
 
@@ -50,9 +51,7 @@ public class ProductDetailFragment extends Fragment {
                 , R.layout.fragment_product_detail
                 , container
                 , false);
-        ImagePagerAdapter adapter=new ImagePagerAdapter(
-                getActivity()
-                ,mProduct.getImages());
+
         mBinding.imageSlider.setAdapter(new ImagePagerAdapter(getActivity(),mProduct.getImages()));
         mBinding.setProduct(mProduct);
         return mBinding.getRoot();

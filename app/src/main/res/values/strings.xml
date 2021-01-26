@@ -14,7 +14,10 @@
     <string name="market">سوپر مارکت</string>
     <string name="clothes">پوشاک</string>
     <string name="creativity">سرگرمی</string>
-    <string name="category">دسته بندی ها</string>
+    <string name="category">دسته بندی محصولات </string>
     <string name="card">سبد خرید</string>
     <string name="profile">پروفایل</string>
+    <string name="empty_product_list">لیست خالی است !</string>
+    <string name="filter_txt">فیلتر کردن</string>
+    <string name="sort_txt">مرتب سازی</string>
 </resources>

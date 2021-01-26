@@ -13,5 +13,6 @@
     <color name="light_red">#c70039</color>
     <color name="orange">#ff5733</color>
     <color name="yellow">#ffC30F</color>
+    <color name="gray">#DADADA</color>
 
 </resources>
