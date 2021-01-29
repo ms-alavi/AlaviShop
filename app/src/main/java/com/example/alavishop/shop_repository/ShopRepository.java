@@ -26,19 +26,19 @@ public class ShopRepository {
 
     private final MutableLiveData<List<ProductResponse>> mBestRateProductsLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<ProductResponse>> mNewestProductsLiveData = new MutableLiveData<>();
-    private final MutableLiveData<List<ProductResponse>> mSortProductsListMutableLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<ProductResponse>> mPopularProductsLiveData = new MutableLiveData<>();
-    private final MutableLiveData<List<ProductResponse>> mDigitalProductsLiveData = new MutableLiveData<>();
-    private final MutableLiveData<List<ProductResponse>> mClothesProductsLiveData = new MutableLiveData<>();
-    private final MutableLiveData<List<ProductResponse>> mCreativityProductsLiveData = new MutableLiveData<>();
-    private final MutableLiveData<List<ProductResponse>> mSuperMarketProductsLiveData = new MutableLiveData<>();
-    private final MutableLiveData<List<ProductResponse>> mHealthProductsLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<ProductResponse>> mSortProductsListMutableLiveDataWithCategory = new MutableLiveData<>();
+    private final MutableLiveData<List<ProductResponse>> mSortProductsListMutableLive = new MutableLiveData<>();
     private final MutableLiveData<List<CategoryResponse>> mAllCategoriesLiveData = new MutableLiveData<>();
     private final MutableLiveData<List<CategoryResponse>> mMainCategoriesLiveData = new MutableLiveData<>();
     private MutableLiveData<ProductResponse> singleProductMutableLiveData;
 
-    public MutableLiveData<List<ProductResponse>> getSortProductsListMutableLiveData() {
-        return mSortProductsListMutableLiveData;
+    public MutableLiveData<List<ProductResponse>> getSortProductsListMutableLiveDataWithCategory() {
+        return mSortProductsListMutableLiveDataWithCategory;
+    }
+
+    public MutableLiveData<List<ProductResponse>> getSortProductsListMutableLive() {
+        return mSortProductsListMutableLive;
     }
 
     public MutableLiveData<List<CategoryResponse>> getMainCategoriesLiveData() {
@@ -59,26 +59,6 @@ public class ShopRepository {
 
     public MutableLiveData<List<ProductResponse>> getPopularProductsLiveData() {
         return mPopularProductsLiveData;
-    }
-
-    public MutableLiveData<List<ProductResponse>> getDigitalProductsLiveData() {
-        return mDigitalProductsLiveData;
-    }
-
-    public MutableLiveData<List<ProductResponse>> getClothesProductsLiveData() {
-        return mClothesProductsLiveData;
-    }
-
-    public MutableLiveData<List<ProductResponse>> getCreativityProductsLiveData() {
-        return mCreativityProductsLiveData;
-    }
-
-    public MutableLiveData<List<ProductResponse>> getSuperMarketProductsLiveData() {
-        return mSuperMarketProductsLiveData;
-    }
-
-    public MutableLiveData<List<ProductResponse>> getHealthProductsLiveData() {
-        return mHealthProductsLiveData;
     }
 
 
@@ -164,134 +144,27 @@ public class ShopRepository {
     }
 
 
-    public void fetchHealthProductsAsync() {
-        RetrofitInstance
-                .getRetrofit()
-                .create(ShopService.class)
-                .orderedListItems(NetworkParams.getHealthProducts())
-                .enqueue(new Callback<List<ProductResponse>>() {
-
-                    @Override
-                    public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
-                        List<ProductResponse> items = response.body();
-
-                        mHealthProductsLiveData.setValue(items);
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
-                        Log.e(TAG, t.getMessage(), t);
-                    }
-                });
-    }
-
-    public void fetchClothesProductsAsync() {
-        RetrofitInstance
-                .getRetrofit()
-                .create(ShopService.class)
-                .orderedListItems(NetworkParams.getClothesProducts())
-                .enqueue(new Callback<List<ProductResponse>>() {
-
-                    @Override
-                    public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
-                        List<ProductResponse> items = response.body();
-
-                        mClothesProductsLiveData.setValue(items);
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
-                        Log.e(TAG, t.getMessage(), t);
-                    }
-                });
-    }
-
-    public void fetchMarketProductsAsync() {
-        RetrofitInstance
-                .getRetrofit()
-                .create(ShopService.class)
-                .orderedListItems(NetworkParams.getMarketProducts())
-                .enqueue(new Callback<List<ProductResponse>>() {
-
-                    @Override
-                    public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
-                        List<ProductResponse> items = response.body();
-
-                        mSuperMarketProductsLiveData.setValue(items);
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
-                        Log.e(TAG, t.getMessage(), t);
-                    }
-                });
-    }
-
-    public void fetchDigitalProductsAsync() {
-        RetrofitInstance
-                .getRetrofit()
-                .create(ShopService.class)
-                .orderedListItems(NetworkParams.getDigitalProducts())
-
-        .enqueue(new Callback<List<ProductResponse>>() {
-
-            @Override
-            public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
-                List<ProductResponse> items = response.body();
-
-                mDigitalProductsLiveData.setValue(items);
-            }
-
-            @Override
-            public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
-                Log.e(TAG, t.getMessage(), t);
-            }
-        });
-    }
-
-    public void fetchCreativityProductsAsync() {
-        RetrofitInstance
-                .getRetrofit()
-                .create(ShopService.class)
-                .orderedListItems(NetworkParams.getCreativityProducts())
-
-        .enqueue(new Callback<List<ProductResponse>>() {
-
-            @Override
-            public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
-                List<ProductResponse> items = response.body();
-
-                mCreativityProductsLiveData.setValue(items);
-            }
-
-            @Override
-            public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
-                Log.e(TAG, t.getMessage(), t);
-            }
-        });
-    }
-
     public void fetchAllCategoriesAsync() {
         RetrofitInstance
                 .getRetrofit()
                 .create(ShopService.class)
                 .getAllCategories(NetworkParams.getAllCategories())
-        .enqueue(new Callback<List<CategoryResponse>>() {
-            @Override
-            public void onResponse(Call<List<CategoryResponse>> call, Response<List<CategoryResponse>> response) {
-                    List<CategoryResponse> items = response.body();
-                    mAllCategoriesLiveData.setValue(items);
+                .enqueue(new Callback<List<CategoryResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<CategoryResponse>> call, Response<List<CategoryResponse>> response) {
+                        List<CategoryResponse> items = response.body();
+                        mAllCategoriesLiveData.setValue(items);
               /*  } else {
                     Log.e(TAG, "response is not successful");
                 }*/
 
-            }
+                    }
 
-            @Override
-            public void onFailure(Call<List<CategoryResponse>> call, Throwable t) {
-                Log.e(TAG, t.getMessage(), t);
-            }
-        });
+                    @Override
+                    public void onFailure(Call<List<CategoryResponse>> call, Throwable t) {
+                        Log.e(TAG, t.getMessage(), t);
+                    }
+                });
     }
 
     public void fetchMainCategoriesAsync() {
@@ -300,27 +173,27 @@ public class ShopRepository {
                 .create(ShopService.class)
                 .getAllCategories(NetworkParams.getMainCategories())
 
-        .enqueue(new Callback<List<CategoryResponse>>() {
-            @Override
-            public void onResponse(Call<List<CategoryResponse>> call, Response<List<CategoryResponse>> response) {
+                .enqueue(new Callback<List<CategoryResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<CategoryResponse>> call, Response<List<CategoryResponse>> response) {
 
-                    List<CategoryResponse> items = response.body();
-                    mMainCategoriesLiveData.setValue(items);
+                        List<CategoryResponse> items = response.body();
+                        mMainCategoriesLiveData.setValue(items);
               /*  } else {
                     Log.e(TAG, "response is not successful");
                 }*/
-            }
+                    }
 
-            @Override
-            public void onFailure(Call<List<CategoryResponse>> call, Throwable t) {
-                Log.e(TAG, t.getMessage(), t);
-            }
-        });
+                    @Override
+                    public void onFailure(Call<List<CategoryResponse>> call, Throwable t) {
+                        Log.e(TAG, t.getMessage(), t);
+                    }
+                });
     }
 
     public MutableLiveData<ProductResponse> getSingleProduct(int productId) {
         singleProductMutableLiveData = new MutableLiveData<>();
-        RetrofitInstance.getRetrofit().create(ShopService.class).getSingleProduct(productId,NetworkParams.AddKeyAndUser())
+        RetrofitInstance.getRetrofit().create(ShopService.class).getSingleProduct(productId, NetworkParams.AddKeyAndUser())
                 .enqueue(new Callback<ProductResponse>() {
                     @Override
                     public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
@@ -339,45 +212,53 @@ public class ShopRepository {
         return singleProductMutableLiveData;
     }
 
-    public void fetchSortedProductList(int categoryId, String orderBy
-            , String order, String search, int page, String attribute, List<Integer> attributeTerm) {
-        if (categoryId == 0) {
-            RetrofitInstance.getRetrofit().create(ShopService.class).getSortedProductsList(order,
-                    orderBy
-                    , page
-                    , search
-                    , attribute
-                    , attributeTerm).enqueue(new Callback<List<ProductResponse>>() {
-                @Override
-                public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
-                    if (response.isSuccessful()) {
-                        mSortProductsListMutableLiveData.setValue(response.body());
+    public void fetchSortedProductListWithCategory(int categoryId, String orderBy
+            , String order, String search, int page) {
 
+        RetrofitInstance.getRetrofit().create(ShopService.class).orderedListItems(
+                NetworkParams.getSortedProductsListWithCategory(page
+                        , categoryId
+                        , order
+                        , orderBy
+                        , search))
+                .enqueue(new Callback<List<ProductResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
+                        if (response.isSuccessful()) {
+                            mSortProductsListMutableLiveDataWithCategory.setValue(response.body());
+
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
-
-                }
-            });
-        } else {
-            RetrofitInstance.getRetrofit().create(ShopService.class).getSortedProductsListWithCategory(categoryId, order,
-                    orderBy, page, search, attribute, attributeTerm).enqueue(new Callback<List<ProductResponse>>() {
-                @Override
-                public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
-                    if (response.isSuccessful()) {
-                        mSortProductsListMutableLiveData.setValue(response.body());
-
+                    @Override
+                    public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
                     }
-                }
-
-                @Override
-                public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
-                }
-            });
-        }
+                });
     }
 
+    public void fetchSortedProductList(String orderBy
+            , String order, String search, int page) {
 
+        RetrofitInstance.getRetrofit().create(ShopService.class).orderedListItems(
+                NetworkParams.getSortedProductsList(page
+                        , order
+                        , orderBy
+                        , search))
+                .enqueue(new Callback<List<ProductResponse>>() {
+                    @Override
+                    public void onResponse(Call<List<ProductResponse>> call, Response<List<ProductResponse>> response) {
+                        if (response.isSuccessful()) {
+                            mSortProductsListMutableLive.setValue(response.body());
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<ProductResponse>> call, Throwable t) {
+                    }
+                });
+    }
 }
+
+
+

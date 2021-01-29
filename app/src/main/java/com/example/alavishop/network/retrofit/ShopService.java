@@ -20,15 +20,17 @@ public interface ShopService {
     @GET("products")
     Call<List<ProductResponse>> orderedListItems(@QueryMap Map<String, String> options);
 
-    @GET(NetworkParams.RetrofitConst.BASE_URL + "products" + NetworkParams.RetrofitConst.KEY_AND_SECRET)
+    @GET("products" + NetworkParams.RetrofitConst.KEY_AND_SECRET)
     Call<List<ProductResponse>> getSortedProductsListWithCategory
             (@Query("category") int category
                     , @Query("order") String order
                     , @Query("orderby") String orderBy
                     , @Query("page") int page
                     , @Query("search") String search
-                    , @Query("attribute") String attribute
-                    , @Query("attribute_term") List<Integer> attributeTerm);
+                    );
+
+/*, @Query("attribute") String attribute
+                    , @Query("attribute_term") List<Integer> attributeTerm*/
 
     @GET(NetworkParams.RetrofitConst.BASE_URL + "products" + NetworkParams.RetrofitConst.KEY_AND_SECRET)
     Call<List<ProductResponse>> getSortedProductsList
@@ -36,8 +38,10 @@ public interface ShopService {
              @Query("orderby") String orderBy
                     , @Query("page") int page
                     , @Query("search") String search
-                    , @Query("attribute") String attribute
-                    , @Query("attribute_term") List<Integer> attributeTerm);
+                 );
+
+ /*  , @Query("attribute") String attribute
+                    , @Query("attribute_term") List<Integer> attributeTerm*/
 
     @GET("products/categories")
     Call<List<CategoryResponse>> getAllCategories(@QueryMap Map<String, String> options);

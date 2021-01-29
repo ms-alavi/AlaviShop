@@ -89,18 +89,18 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/product_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/price"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="15dp"
-                android:gravity="right"
-                android:text="@{product.price}"
-                android:textSize="16sp"
-                tools:text="test" />
+                <TextView
+                    android:id="@+id/product_price"
+                    android:layout_width="374dp"
+                    android:layout_height="17dp"
+                    android:layout_below="@+id/price"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="15dp"
+                    android:gravity="right"
+                    android:text="@{product.price}"
+                    android:textSize="16sp"
+                    tools:text="test" />
             </LinearLayout
                 >
 

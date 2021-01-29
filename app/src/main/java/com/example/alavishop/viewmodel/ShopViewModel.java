@@ -14,14 +14,18 @@ import com.example.alavishop.utilities.QueryPreferences;
 import java.util.List;
 
 public class ShopViewModel extends AndroidViewModel {
-    public static final String BEST_RATE_PRODUCT = "bestRateProduct";
-    public static final String NEWEST_PRODUCT = "NewestProduct";
-    public static final String POPULAR_PRODUCT = "popularProduct";
+
     private ShopRepository mShopRepository;
 
     private final MutableLiveData<List<ProductResponse>> mBestRateProductsLiveData;
     private final MutableLiveData<List<ProductResponse>> mNewestProductsLiveData;
     private final MutableLiveData<List<ProductResponse>> mPopularProductsLiveData;
+    private final MutableLiveData<List<ProductResponse>> mSortProductsListMutableLiveData;
+    private final MutableLiveData<List<ProductResponse>> mSortProductsListMutableLiveDataWithCategory;
+
+    public MutableLiveData<List<ProductResponse>> getSortProductsListMutableLiveDataWithCategory() {
+        return mSortProductsListMutableLiveDataWithCategory;
+    }
 
     public MutableLiveData<List<ProductResponse>> getBestRateProductsLiveData() {
         return mBestRateProductsLiveData;
@@ -35,16 +39,9 @@ public class ShopViewModel extends AndroidViewModel {
         return mPopularProductsLiveData;
     }
 
-
-    public ShopViewModel(@NonNull Application application) {
-        super(application);
-        mShopRepository = new ShopRepository();
-
-        mBestRateProductsLiveData = mShopRepository.getBestRateProductsLiveData();
-        mNewestProductsLiveData = mShopRepository.getNewestProductsLiveData();
-        mPopularProductsLiveData = mShopRepository.getPopularProductsLiveData();
+    public MutableLiveData<ProductResponse> getSingleProduct(int productId){
+        return mShopRepository.getSingleProduct(productId);
     }
-
 
     public void fetchBestRateProductsAsync() {
         mShopRepository.fetchBestRateProductsAsync();
@@ -58,6 +55,21 @@ public class ShopViewModel extends AndroidViewModel {
         mShopRepository.fetchPopularProductsAsync();
     }
 
+    public void fetchSortProductListAsync(int categoryId
+            ,String orderBy
+            ,String order
+            ,String search
+            ,int page){
+        mShopRepository.fetchSortedProductList(orderBy,order,search,page);
+    }
+    public void fetchSortedProductListWithCategoryAsync(int categoryId
+            ,String orderBy
+            ,String order
+            ,String search
+            ,int page){
+        mShopRepository.fetchSortedProductListWithCategory(categoryId,orderBy,order,search,page);
+    }
+
     public void fetchItems(@Nullable String method) {
         String query = QueryPreferences.getSearchQuery(getApplication());
         if (query != null) {
@@ -69,18 +81,15 @@ public class ShopViewModel extends AndroidViewModel {
             fetchPopularProductsAsync();
         }
     }
-     public MutableLiveData<ProductResponse> getSingleProduct(int productId){
-        return mShopRepository.getSingleProduct(productId);
-     }
+    public ShopViewModel(@NonNull Application application) {
+        super(application);
 
-
-
-
-    public void setQueryInPreferences(String query) {
-        QueryPreferences.setSearchQuery(getApplication(), query);
+        mShopRepository = new ShopRepository();
+        mSortProductsListMutableLiveData = mShopRepository.getSortProductsListMutableLiveDataWithCategory();
+        mBestRateProductsLiveData = mShopRepository.getBestRateProductsLiveData();
+        mNewestProductsLiveData = mShopRepository.getNewestProductsLiveData();
+        mPopularProductsLiveData = mShopRepository.getPopularProductsLiveData();
+        mSortProductsListMutableLiveDataWithCategory = mShopRepository.getSortProductsListMutableLiveDataWithCategory();
     }
 
-    public String getQueryFromPreferences() {
-        return QueryPreferences.getSearchQuery(getApplication());
-    }
 }

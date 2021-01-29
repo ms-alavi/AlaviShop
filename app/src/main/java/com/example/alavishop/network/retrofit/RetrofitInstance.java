@@ -37,7 +37,7 @@ public class RetrofitInstance {
         }
         return retrofit;
     }
-
+/*
     public static Retrofit getMapRetrofit() {
         if (mapRetrofit == null) {
             mapRetrofit = new Retrofit.Builder().baseUrl(NetworkParams.RetrofitConst.BASE_URL_GEOCODING_MAP_IR)
@@ -45,6 +45,6 @@ public class RetrofitInstance {
                     .build();
         }
         return mapRetrofit;
-    }
+    }*/
 
 }
