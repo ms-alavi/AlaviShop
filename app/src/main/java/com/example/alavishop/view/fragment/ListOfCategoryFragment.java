@@ -68,10 +68,7 @@ public class ListOfCategoryFragment extends Fragment {
                 , ""
                 , productListPage);
         setObserver();
-
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,12 +79,6 @@ public class ListOfCategoryFragment extends Fragment {
                 , false);
         return mBinding.getRoot();
     }
-
-    private void initViews() {
-        mBinding.productsListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-    }
-
-
 
     private void initRecyclerView(List<ProductResponse> responses) {
         if (mAdapter == null) {
@@ -127,16 +118,14 @@ public class ListOfCategoryFragment extends Fragment {
     }
 
     private void setObserver() {
-        mShopViewModel.getSortProductsListMutableLiveDataWithCategory().observe(this, new Observer<List<ProductResponse>>() {
-            @Override
-            public void onChanged(List<ProductResponse> productResponses) {
-                if (productResponses.isEmpty()){
-                    isListEmpty=true;
-                }
-                initRecyclerView(productResponses);
+        mShopViewModel.getSortProductsListMutableLiveDataWithCategory().observe(this
+                , productResponses -> {
+                    if (productResponses.isEmpty()){
+                        isListEmpty=true;
+                    }
+                    initRecyclerView(productResponses);
 
-            }
-        });
+                });
     }
 
 
