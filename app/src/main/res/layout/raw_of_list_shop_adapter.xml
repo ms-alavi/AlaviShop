@@ -3,9 +3,11 @@
 
     <data>
 
+
+
         <variable
-            name="productViewModel"
-            type="com.example.alavishop.viewmodel.ProductViewModel" />
+            name="product"
+            type="com.example.alavishop.networkmodel.product.ProductResponse" />
 
     </data>
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,7 +46,7 @@
             android:minLines="2"
             android:gravity="center"
             android:lineSpacingExtra="3dp"
-            android:text="@{productViewModel.name}"
+            android:text="@{product.name}"
             android:textStyle="bold"
             tools:text="test" />
 
@@ -67,7 +69,7 @@
             android:minLines="1"
             android:ellipsize="end"
             android:gravity="center"
-            android:text="@{productViewModel.price}"
+            android:text="@{product.price}"
             android:textStyle="bold"
             tools:text="test" />
 

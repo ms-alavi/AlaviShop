@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AlaviShop">
-        <activity android:name=".view.activity.ListOfCategoryActivity"></activity>
+        <activity android:name=".view.activity.SplashActivity"></activity>
+        <activity android:name=".view.activity.ListOfCategoryActivity" />
         <activity android:name=".view.activity.CategoryActivity" />
         <activity android:name=".view.activity.ProductDetailActivity" />
         <activity android:name=".view.activity.ShopActivity">

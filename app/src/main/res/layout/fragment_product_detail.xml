@@ -16,7 +16,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical"
             tools:context=".view.fragment.ProductDetailFragment">
@@ -24,52 +24,56 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/image_slider"
                 android:layout_width="match_parent"
-                android:layout_height="360dp" />
+                android:layout_height="360dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true" />
 
             <TextView
                 android:id="@+id/product_name"
-                android:background="@drawable/shap_circle_round"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/image_slider"
                 android:layout_marginTop="5dp"
+                android:background="@drawable/shap_circle_round"
                 android:gravity="center"
                 android:text="@{product.name}"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="test" />
+
             <LinearLayout
 
                 android:id="@+id/lnr"
-                android:background="@color/yellow"
-                android:layout_below="@id/product_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/product_name"
+                android:background="@color/yellow"
                 android:orientation="vertical">
 
-            <TextView
-                android:background="@color/yellow"
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/product_name"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="8dp"
-                android:text="@string/description"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/product_name"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/yellow"
+                    android:text="@string/description"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/product_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="8dp"
-                android:gravity="right"
-                android:text="@{product.description}"
-                android:textSize="16sp"
-                tools:text="test" />
+                <TextView
+                    android:id="@+id/product_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
+                    android:gravity="right"
+                    android:text="@{product.description}"
+                    android:textSize="16sp"
+                    tools:text="test" />
 
                 <View
                     android:layout_width="match_parent"
@@ -78,16 +82,16 @@
                     android:background="@color/black"
                     android:gravity="center" />
 
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/product_description"
-                android:layout_marginTop="5dp"
-                android:text="@string/price"
-                android:layout_marginRight="8dp"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/product_description"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/price"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/product_price"
@@ -101,31 +105,31 @@
                     android:text="@{product.price}"
                     android:textSize="16sp"
                     tools:text="test" />
-            </LinearLayout
-                >
+            </LinearLayout>
 
             <TextView
                 android:id="@id/txt"
-                android:background="@drawable/shap_circle_round_buton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/lnr"
+                android:background="@drawable/shap_circle_round_buton"
                 android:gravity="center"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                />
-                <Button
-                    android:gravity="center_vertical"
-                    android:text="@string/add_to_cart"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:layout_margin="5dp"
-                    android:layout_below="@+id/txt"
-                    android:id="@+id/add_to_cart"
-                    android:drawableLeft="@drawable/ic_baseline_add_shopping_cart_24"
-                    android:layout_alignParentBottom="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"/>
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/add_to_cart"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/txt"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="5dp"
+                android:drawableLeft="@drawable/ic_baseline_add_shopping_cart_24"
+                android:gravity="center_vertical"
+                android:text="@string/add_to_cart"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
 
 
         </RelativeLayout>

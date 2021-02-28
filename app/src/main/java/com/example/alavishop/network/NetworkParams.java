@@ -53,6 +53,8 @@ public class NetworkParams {
         Map<String, String> bestRatingProducts = new HashMap<>();
         bestRatingProducts.putAll(BASE_OPTIONS);
         bestRatingProducts.put("orderby", ORDER_BY_RATING);
+
+        bestRatingProducts.put("per_page", "100");
         bestRatingProducts.put("order", ORDER_ASC);
         return bestRatingProducts;
     }

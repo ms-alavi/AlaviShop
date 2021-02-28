@@ -1,6 +1,7 @@
 package com.example.alavishop.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,6 +35,7 @@ public class ListOfCategoryFragment extends Fragment {
     private ShopViewModel mShopViewModel;
     private int productListPage = 1;
     HorizontalProductAdapter mAdapter;
+
     private boolean isListEmpty=false;
 
 
@@ -59,7 +61,6 @@ public class ListOfCategoryFragment extends Fragment {
         } else {
             mCategoryId = 0;
         }
-
 
         mShopViewModel = new ViewModelProvider(this).get(ShopViewModel.class);
         mShopViewModel.fetchSortedProductListWithCategoryAsync(mCategoryId

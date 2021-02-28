@@ -56,7 +56,7 @@ public class VerticalProductAdapter extends RecyclerView.Adapter<VerticalProduct
         public ShopHolder(@NonNull RawOfListShopAdapterBinding binding, List<ProductResponse> products) {
             super(binding.getRoot());
             mRawOfListBinding = binding;
-            mRawOfListBinding.setProductViewModel(new ProductViewModel(mProduct));
+         //   mRawOfListBinding.setProductViewModel(new ProductViewModel(mProduct));
             mRawOfListBinding.getRoot()
                     .setOnClickListener(v -> mContext.startActivity(ProductDetailActivity
                             .newIntent(mContext,mProduct)));
@@ -66,9 +66,10 @@ public class VerticalProductAdapter extends RecyclerView.Adapter<VerticalProduct
         public void bindProductItem(ProductResponse product, int position) {
             mProduct = product;
 
-            mRawOfListBinding.getProductViewModel().setProduct(mProduct);
-            mRawOfListBinding.txtName.setText(mProduct.getName());
-            mRawOfListBinding.txtPrice.setText(mProduct.getPrice());
+          //  mRawOfListBinding.getProductViewModel().setProduct(mProduct);
+            mRawOfListBinding.setProduct(mProduct);
+           // mRawOfListBinding.txtName.setText(mProduct.getName());
+          //  mRawOfListBinding.txtPrice.setText(mProduct.getPrice());
             Picasso.get()
                     .load(product.getImages().get(0).getSrc())
                     .placeholder(R.drawable.ic_shopping_cart)

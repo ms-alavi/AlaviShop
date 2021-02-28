@@ -44,7 +44,6 @@ public class HorizontalProductAdapter extends RecyclerView.Adapter<HorizontalPro
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
        ProductResponse productResponse=mProductResponses.get(position);
        holder.bindProductItem(productResponse);
 
@@ -56,7 +55,8 @@ public class HorizontalProductAdapter extends RecyclerView.Adapter<HorizontalPro
     }
 
     public void setProductList(List<ProductResponse> responses) {
-        mProductResponses=responses;
+        mProductResponses.addAll(responses);
+        //mProductResponses=responses;
     }
 
     public List<ProductResponse>  getProductsList() {
